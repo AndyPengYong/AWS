@@ -1,0 +1,44 @@
+create table testtable (testcol int);
+
+--The PG_TABLE_DEF system table contains information about all the tables in the cluster.
+select * from pg_table_def where tablename = 'testtable';
+
+select * from pg_user;
+
+--View recent queries
+select query, pid, elapsed, substring from svl_qlog
+where userid = 100
+order by starttime desc
+limit 5;
+
+--Determine the process ID of a running query
+select pid, user_name, starttime, query
+from stv_recents
+where status='Running';
+
+--Cancel a running query
+select pid, trim(user_name), starttime, substring(query,1,20)
+from stv_recents
+where status='Running';
+
+cancel 18764;
+
+
+
+--Amazon Redshift provides access to the following types of system tables:
+
+1.STL Tables for Logging 
+These system tables are generated from Amazon Redshift log files to provide a history of the system.
+Logging tables have an STL prefix.
+
+2.STV Tables for Snapshot Data
+These tables are virtual system tables that contain snapshots of the current system data. Snapshot
+tables have an STV prefix.
+
+3.System Views
+System views contain a subset of data found in several of the STL and STV system tables. Systems
+views have an SVV or SVL prefix.
+
+4.System Catalog Tables
+The system catalog tables store schema metadata, such as information about tables and columns.
+System catalog tables have a PG prefix.

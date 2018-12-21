@@ -1,0 +1,42 @@
+1. Top 10 Performance Tuning Techniques for Amazon Redshift
+https://amazonaws-china.com/blogs/big-data/top-10-performance-tuning-techniques-for-amazon-redshift/
+
+Issue #1: Incorrect column encoding
+
+Issue #2 每 Skewed table data
+
+Issue #3 每 Queries not benefiting from sort keys
+
+Issue #4 每 Tables without statistics or which need vacuum
+
+Issue #5 每 Tables with very large VARCHAR columns
+
+Issue #6 每 Queries waiting on queue slots
+
+Issue #7 每 Queries that are disk-based
+
+Issue #8 每 Commit queue waits
+
+Issue #9 每 Inefficient data loads
+
+Issue #10 每 Inefficient use of Temporary Tables
+
+2. Top 8 Best Practices for High-Performance ETL Processing Using Amazon Redshift
+https://amazonaws-china.com/blogs/big-data/top-8-best-practices-for-high-performance-etl-processing-using-amazon-redshift/
+
+1. COPY data from multiple, evenly sized files
+
+2. Use workload management to improve ETL runtimes
+
+3. Perform table maintenance regularly
+
+4. Perform multiple steps in a single transaction
+
+5. Loading data in bulk
+
+6. Use UNLOAD to extract large result sets
+
+7. Use Redshift Spectrum for ad hoc ETL processing
+
+8. Monitor daily ETL health using diagnostic queries
+

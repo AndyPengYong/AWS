@@ -1,0 +1,26 @@
+"SET DW" principle
+
+1. S - The S is for sort key. Query filters access sort key columns frequently.
+
+   Choose up to three columns to be the sort key columns
+   Order the sort keys in increasing degree of specificity, but balance this with the frequency of use
+   
+2. E - The E is for encoding.Encoding sets the compression algorithm used for each column in each table.
+
+3. T - The I is for table maintenance. The Amazon Redshift query optimizer creates more efficient execution plans
+when query statistics are up-to-date.  Use the ANALYZE command to gather statistics after loading ,updating or deleting data from tables. Similary you can minimize the number of blocks scanned with the VACUUM command. VACUUM 
+improves performance by doing the following:
+   Removing the rows that have been logically deleted from the block,resulting in fewer blocks to scan.
+   Keeping the data in sort key order, which helps targt the specific blocks for scanning.
+  
+4. D - The D is for table distribution.
+   Key - You desingate a column for distribution.
+   Even - Amazon Redshift assigns the compute nodes with a round-robin pattern.
+   All - Amazon Redshift puts a complete copy of the table in the database slice of each compute node.
+   
+5. W - The W is for Amazon Reshift Workload management . If you use WLM, you control the folow of SQL statements through the compute clusters and how much system memory to allocate.
+   
+ Redshift Database Developer Guide: 23
+ aws certified solutions architect: 134
+ 
+ 
