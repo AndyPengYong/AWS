@@ -31,9 +31,12 @@ cancel 18764;
 These system tables are generated from Amazon Redshift log files to provide a history of the system.
 Logging tables have an STL prefix.
 
+STL_LOAD_ERRORS gives the log of errors encountered while inserting the data into cluster.
+
 2.STV Tables for Snapshot Data
 These tables are virtual system tables that contain snapshots of the current system data. Snapshot
 tables have an STV prefix.
+STV_RECENTS to give the recently completed or currently running queries in the cluster.
 
 3.System Views
 System views contain a subset of data found in several of the STL and STV system tables. Systems
@@ -42,3 +45,5 @@ views have an SVV or SVL prefix.
 4.System Catalog Tables
 The system catalog tables store schema metadata, such as information about tables and columns.
 System catalog tables have a PG prefix.
+
+PG_TABLE_DEF to list all the table names and columns present in the database.

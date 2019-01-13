@@ -1,1 +1,11 @@
 Git Hub readmine markdownpad: http://markdownpad.com/ 
+
+Redshift JDBC driver: 
+https://s3.amazonaws.com/redshift-dow...
+ 
+SQL Workbench:
+http://www.sql-workbench.net/download...
+Download Generic package for all the systems. 
+ 
+S3 Browser:
+http://s3browser.com/

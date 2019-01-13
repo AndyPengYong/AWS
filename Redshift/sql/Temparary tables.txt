@@ -1,0 +1,32 @@
+Temporary tables:
+1) The table will be there as long as the current session is running.
+2) We can name the temp table same as the parment table. When queried, priority will be given to temporary table.
+3)You can not define a schema while creating a temp table. It's created under a special schema.
+
+create temporary table class
+(
+class_id int,
+class_name char(10)
+);
+
+create table if not exists class
+(
+class_id int,
+class_name char(10)
+);
+
+create table if not exists class
+(
+ser_no int identity,----increate this column automatically(ser_no int identity(5,5))
+class_id int defualt 0,
+class_desc char(10)
+);
+
+create table if not exists class
+(
+ser_no int identity ENCODE RUNLENGTH,
+class_id int defualt 0 ENCODE RAW,
+class_desc char(10) ENCODE LZ0
+);
+
+analyze compression class; ---to analyze what type of encode for each column
