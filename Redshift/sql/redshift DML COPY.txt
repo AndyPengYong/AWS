@@ -1,0 +1,19 @@
+
+select top 10 * from users;
+
+COPY table-name
+from data_source
+authorization
+
+
+---Use IAM role
+COPY DIM_CLASS
+FROM 's3://training002/School/dim_class.csv'
+CREDENTIALS 'aws_iam_role=arn:aws:iam::08908098098:role/Traning002'
+DELIMIETER ',' IGNOREHEADER 1
+
+---Use aws access key and secret access key
+COPY DIM_CLASS
+FROM 's3://training002/School/dim_class.csv'
+CREDENTIALS 'aws_access_key_id=JFDKALJFDKLAJDK:aws_secret_acess_key=jfkdlajfkdajfd'
+DELIMIETER ',' IGNOREHEADER 1

@@ -30,3 +30,100 @@ class_desc char(10) ENCODE LZ0
 );
 
 analyze compression class; ---to analyze what type of encode for each column
+
+
+create table if not exists class
+(
+ser_no int identity ENCODE RUNLENGTH,
+class_id int defualt 0 ENCODE RAW,
+class_desc char(10) ENCODE LZ0
+) 
+diststyle even|all|;
+
+
+----Sort key
+create table if not exists class
+(
+ser_no int identity ENCODE RUNLENGTH,
+class_id int defualt 0 ENCODE RAW,
+class_desc char(10) ENCODE LZ0,
+class_teacher varchar(50) sortkey
+) 
+diststyle even;
+
+----Sort key
+create table if not exists class
+(
+ser_no int identity ENCODE RUNLENGTH,
+class_id int defualt 0 ENCODE RAW,
+class_desc char(10) ENCODE LZ0,
+class_teacher varchar(50)
+) 
+diststyle even
+sortkey (class_teacher);
+
+----Unique key
+create table if not exists class
+(
+ser_no int identity ENCODE RUNLENGTH,
+class_id int defualt 0 ENCODE RAW,
+class_desc char(10) ENCODE LZ0,
+class_teacher varchar(50),
+room_no smallint unique ENCODE RUNLENGTH
+) 
+diststyle even
+COMPOUND sortkey (class_id,class_teacher);
+
+
+CREATE TABLE CLASS_NEW
+(
+LIKE CLASS
+)
+
+
+Column Encodings
+1) RAW Encoding
+   With RAW encoding, data is stored in raw,uncompressed form.It's default endcoding for columns that are designed as sort keys
+   
+2) Byte Encoding
+   A separate dictionary of unique values is created for each block of column values on disk.
+   This is very effective when a column contains a limited number of unique values
+   
+3) Mostly Encoding
+   Useful when the data type for a column is larger than most of the stored values required
+   For example, you can compress a 16-bit column, such as an INT2 column , to 8-bit storage.
+   
+4) Delta Encoding
+   For all data types except CHAR and VARCHAR
+   Delta encodings are very useful for datetime columns
+   
+5) LZO Encoding
+   All except Boolean, real and double
+   LZO is the default encoding except for columns that are designed as sort keys and columns that are defined as boolean , real and double precision data types.
+   LZO encoding works expecially well for CHAR and VARCHAR columns that store very long character strings, especially free form text, such as product description, user comments or JSON strings.
+   
+6) Runlength Encoding
+   For all data types
+   Runlength encoding replace a value that is repeated consecutively with a token that consists of the value and a 
+   count of the number of consecutive occurrences(the length of the run)
+   A separate dictionary of unique vlaues is created for each block of column values on disk.
+   This encoding is best suited to a table in which data values are often repeated consecutively
+   
+ 7) TEXT255 and TEXT32K Encoding
+ For varchar only
+ Useful for compressing VARCHAR columns in which the same words recur often.
+ 
+ 8) Zstandard Encoding
+ For all data types
+ ZSTD works especially well with CHAR and VARCHAR columns that store a wide range of long and short strings,such as
+ product descriptions, user comments,logs and JSON strings.
+ 
+ RedShift DDL Commands
+ 
+ ALTER TABLE CLASS OWNER TO USER_001
+ 
+ SELECT * FROM PG_USER_INFO
+ 
+ CREATE USER USER_001 PASSWORD 'USER_001'
+ 
+ 
